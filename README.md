@@ -62,7 +62,7 @@ Truth Table
 Verilog Code
 
 4:1 MUX Gate-Level Implementation
-
+```
 
 module multiplexer(s1,s0,a,b,c,d,y);
 input s1,s0,a,b,c,d;
@@ -74,12 +74,12 @@ and g3(w[2],s1,~s0,c);
 and g4(w[3],s1,s0,d);
 or g5(y,w[0],w[1],w[2],w[3]);
 endmodule
-
+```
 output :![gatelevel](https://github.com/user-attachments/assets/fa24d33d-e681-488a-aa29-9621f0cabb2f)
 
 
 4:1 MUX Data Flow Implementation
-
+```
 module mul_data(
     output Y,        
     input I0, I1, I2, I3, 
@@ -92,12 +92,12 @@ module mul_data(
                (S1 & S0 & I3);     
 
 endmodule
-
+```
 Output: ![IMG-20240926-WA0016 1](https://github.com/user-attachments/assets/e6acade0-ca44-4883-9534-0ac3fb2bcce2)
 
 
 4:1 MUX Behavioral Implementation
-
+```
 module mux(s, i, y);
 input [1:0] s;
 input [3:0] i;
@@ -114,11 +114,12 @@ begin
     endcase
 end
 endmodule
+```
 Output : ![IMG-20240926-WA0017 1](https://github.com/user-attachments/assets/fa0f71a9-b958-4fa4-ad17-bc8145ea3af1)
 
 
 4:1 MUX Structural Implementation
-
+```
 module mux_4to1 (a,b,c,d,S0,S1,Y);
 
  input a,b,c,d;
@@ -131,11 +132,12 @@ assign Y = (S1 == 0 && S0 == 0) ? a :
                (S1 == 1 && S0 == 1) ? d:
 
 endmodule
+```
 Output : ![IMG-20240919-WA0001 2](https://github.com/user-attachments/assets/4cb12077-3c8a-4aaf-840d-521e087fa827)
 
 
 Testbench Implementation
-
+```
 // mux4_to_1_tb.v
 `timescale 1ns / 1ps
 
@@ -223,16 +225,16 @@ module mux4_to_1_tb;
     end
 endmodule
 
-
+```
 Sample Output
-
+```
 Time=0 | S1=0 S0=0 | Inputs: A=0 B=0 C=0 D=0 | Y_gate=0 | Y_dataflow=0 | Y_behavioral=0 | Y_structural=0
 Time=10 | S1=0 S0=0 | Inputs: A=0 B=0 C=0 D=0 | Y_gate=0 | Y_dataflow=0 | Y_behavioral=0 | Y_structural=0
 Time=20 | S1=0 S0=0 | Inputs: A=0 B=0 C=0 D=1 | Y_gate=0 | Y_dataflow=0 | Y_behavioral=0 | Y_structural=0
 Time=30 | S1=0 S0=1 | Inputs: A=0 B=0 C=0 D=1 | Y_gate=0 | Y_dataflow=0 | Y_behavioral=0 | Y_structural=0
 Time=40 | S1=1 S0=0 | Inputs: A=0 B=0 C=0 D=1 | Y_gate=0 | Y_dataflow=0 | Y_behavioral=0 | Y_structural=0
 ...
-
+```
 Conclusion:
 
 In this experiment, a 4:1 Multiplexer was successfully designed and simulated using Verilog HDL across four different modeling styles: Gate-Level, Data Flow, Behavioral, and Structural. The simulation results verified the correct functionality of the MUX, with all implementations producing identical outputs for the given input conditions.
